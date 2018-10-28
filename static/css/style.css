@@ -83,6 +83,31 @@ select {
   min-width: 70px;
 }
 
+
+
+	.table{
+		width:100%; 
+    border-collapse:collapse; 
+   
+	}
+	.table td{ 
+		padding:7px; border:#4e95f4 1px solid;
+	}
+	/* provide some minimal visual accomodation for IE8 and below */
+	.table tr{
+		background:#4e5d6c;
+	}
+	/*  Define the background color for all the ODD background rows  */
+	.table tr:nth-child(odd){ 
+		background:darkslateblue;
+	}
+	/*  Define the background color for all the EVEN background rows  */
+	.table tr:nth-child(even){
+		background:lightslategray;
+	}
+
+
+
 .loader {
   margin-top: 50px;
 }

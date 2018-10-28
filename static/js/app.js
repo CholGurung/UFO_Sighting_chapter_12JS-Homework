@@ -42,7 +42,7 @@ function handleClick(event)
     var inputShape = d3.select("#shape");
 
     
-    // Get the value property of the date input element
+    // Get the value property of the date input element and other form input elements
     var inputValue = inputDate.property("value");
     console.log(inputValue);
     var stateValue = inputState.property("value");
@@ -50,15 +50,16 @@ function handleClick(event)
     var countryValue = inputCountry.property("value");
     var shapeValue = inputShape.property("value");
     
-    //d3.selectAll("tbody").remove();
+    
     var filteredData = tableData.filter(tableData => tableData.datetime === inputValue);
     console.log(filteredData);
-    var filteredState = tableData.filter(tableData => tableData.state === stateValue);
-    var filteredCity = tableData.filter(tableData => tableData.city === cityValue);
-    var filteredCountry = tableData.filter(tableData => tableData.country === countryValue);
-    var filteredShape = tableData.filter(tableData => tableData.shape === shapeValue);
+    //var filteredState = tableData.filter(tableData => tableData.state === stateValue);
+    //var filteredCity = tableData.filter(tableData => tableData.city === cityValue);
+   // var filteredCountry = tableData.filter(tableData => tableData.country === countryValue);
+   // var filteredShape = tableData.filter(tableData => tableData.shape === shapeValue);
     
-     // Finally, add the filteredData to the table
+    // if only date filter is available
+    if(inputDate && !stateValue && !cityValue && !countryValue && !shapeValue ) {
      filteredData.forEach((ufosight) => {
          var row = tbody.append("tr");
 
@@ -67,16 +68,27 @@ function handleClick(event)
             cell.text(value);
          });
      }); 
-     
-     //filter by state
-     filteredState.forEach((ufosight) => {
-        var row = tbody.append("tr");
+    }
+     //d3.selectAll("tbody").remove();
+     //multiple filter elements are available
+     if(stateValue && cityValue && countryValue && shapeValue){
+         var filteredAll = tableData.filter(
+             tableData => (tableData.datetime === inputValue 
+             && tableData.state === stateValue 
+             && tableData.city === cityValue 
+             && tableData.country === countryValue
+             && tableData.shape === shapeValue ));
+             filteredAll.forEach((ufosight) => {
+                var row = tbody.append("tr");
+       
+                Object.entries(ufosight).forEach(([key, value]) => {
+                   var cell = tbody.append("td").attr("border",1);
+                   cell.text(value);
+                });
+            });  
 
-        Object.entries(ufosight).forEach(([key, value]) => {
-           var cell = tbody.append("td").attr("border",1);
-           cell.text(value);
-        });
-    });   
+     }
+     
      
 }
 
