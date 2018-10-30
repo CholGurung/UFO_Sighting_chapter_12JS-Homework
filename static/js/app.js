@@ -71,25 +71,23 @@ function handleClick(event)
     }
      //d3.selectAll("tbody").remove();
      //multiple filter elements are available
-     if(stateValue && cityValue && countryValue && shapeValue){
-         var filteredAll = tableData.filter(
-             tableData => (tableData.datetime === inputValue 
-             && tableData.state === stateValue 
-             && tableData.city === cityValue 
-             && tableData.country === countryValue
-             && tableData.shape === shapeValue ));
-             filteredAll.forEach((ufosight) => {
-                var row = tbody.append("tr");
-       
-                Object.entries(ufosight).forEach(([key, value]) => {
-                   var cell = tbody.append("td").attr("border",1);
-                   cell.text(value);
-                });
-            });  
-
-     }
+    else {
+    var filteredAll = tableData.filter(
+                 tableData => ((tableData.datetime === inputValue || inputValue === "")
+                 && (tableData.state === stateValue || stateValue === "")
+                 && (tableData.city === cityValue || cityValue === "")
+                 && (tableData.country === countryValue || countryValue === "")
+                 && (tableData.shape === shapeValue || shapeValue === "")));
+                 filteredAll.forEach((ufosight) => {
+                    var row = tbody.append("tr");
+           
+                    Object.entries(ufosight).forEach(([key, value]) => {
+                       var cell = tbody.append("td").attr("border",1);
+                       cell.text(value);
+                    });
+                });  
      
      
+    }
 }
-
 filterBtn.on("click",handleClick);
