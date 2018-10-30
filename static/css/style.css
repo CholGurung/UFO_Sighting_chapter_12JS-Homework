@@ -75,6 +75,7 @@ select {
 
 #table-area th {
   text-align: center;
+  border:#4e95f4 1px solid;
 }
 
 #table-area th:first-child,
@@ -88,24 +89,25 @@ select {
 	.table{
 		width:100%; 
     border-collapse:collapse; 
-   
+    background-color:rgb(169, 195, 226);
+    color:black;
 	}
 	.table td{ 
 		padding:7px; border:#4e95f4 1px solid;
 	}
 	/* provide some minimal visual accomodation for IE8 and below */
 	.table tr{
-		background:#4e5d6c;
+		background:#82a9cf;
 	}
 	/*  Define the background color for all the ODD background rows  */
 	.table tr:nth-child(odd){ 
-		background:darkslateblue;
+		background:#6498cc;
 	}
 	/*  Define the background color for all the EVEN background rows  */
 	.table tr:nth-child(even){
-		background:lightslategray;
+		background:rgb(181, 182, 128);
 	}
-
+  .table-striped
 
 
 .loader {
